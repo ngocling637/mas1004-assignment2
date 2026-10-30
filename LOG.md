@@ -14,7 +14,7 @@ End the log with your plan for what to try next.
 - what it means: what you think the result says
 -->
 
-STEP 1   — What helps distinguish cities
+## STEP 1   — What helps distinguish cities
 
 1. Busan
 - Beaches, large bridges, mountains, tall buildings near the sea, and some traditional temples.
@@ -58,3 +58,10 @@ Street food stalls, Korean ‘hotteok’, fresh seafood, and traditional food ma
   though the recipe and training photos are the same. This shows that random
   factors can affect the results. When I test a new recipe, I should consider
   this variation before deciding whether the change improves the model.
+
+  ## STEP 3: Two mistakes 
+1. Similar urban environments
+Many images show similar urban features such as vehicles, buses, trains, buildings, and other infrastructure. As all five cities are large urban areas, these features often look similar. As a result, the model may have difficulty distinguishing one city from another based only on their general urban environment.
+
+2. Similar streets, shops, and signs
+Many images contain shopping streets, local shops, restaurants, and street signs that look similar across different cities. The model may struggle to distinguish three languages, people, and cultural characteristics from these images.
