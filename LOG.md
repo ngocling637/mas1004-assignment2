@@ -65,3 +65,11 @@ Many images show similar urban features such as vehicles, buses, trains, buildin
 
 2. Similar streets, shops, and signs
 Many images contain shopping streets, local shops, restaurants, and street signs that look similar across different cities. The model may struggle to distinguish three languages, people, and cultural characteristics from these images.
+
+##  STEP 6: One change at a time (Track A)
+1. First change: Balancing the number of images that were sampled from each category
+- Changed: Changed the sampling weights so that the model could learn from all five cities more equally.
+- Why: Seoul and Tokyo had many more training images than the other cities, so the model had more chances to learn their features. I wanted to give Busan, Osaka, and Taipei more chances by balancing the number of times that images from each city were sampled.
+- Validation: 0.5114 (before: 0.4896)
+- What it means: The results improved for Busan, Osaka, and Taipei, but decreased for Seoul and Tokyo. I think this is because the model could focus more on the features of cities that had fewer training images before. At the same time, it saw fewer images from Seoul and Tokyo compared to the original training method. However, the overall score increased, so balanced sampling seems to have helped the model perform better across all five cities.
+- Next plan: I will try another experiment to improve the overall validation score while keeping the performance of all five cities balanced.
