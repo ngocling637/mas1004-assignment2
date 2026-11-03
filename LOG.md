@@ -73,3 +73,10 @@ Many images contain shopping streets, local shops, restaurants, and street signs
 - Validation: 0.5114 (before: 0.4896)
 - What it means: The results improved for Busan, Osaka, and Taipei, but decreased for Seoul and Tokyo. I think this is because the model could focus more on the features of cities that had fewer training images before. At the same time, it saw fewer images from Seoul and Tokyo compared to the original training method. However, the overall score increased, so balanced sampling seems to have helped the model perform better across all five cities.
 - Next plan: I will try another experiment to improve the overall validation score while keeping the performance of all five cities balanced.
+
+2. Second change: Removing Horizontal Flip
+- Changed: Removed `RandomHorizontalFlip()` from the training recipe. The model now trains only with images in their original direction.
+- Why: I wanted to test if keeping images in their original direction could help the model learn city features more consistently. Some city features, such as traffic direction, signs, and the arrangement of objects, may be important for recognizing each city.
+- Validation: 0.5007
+- What it means: The overall score decreased from 0.5114 to 0.5007. Seoul and Tokyo increased slightly, while Busan, Osaka, and Taipei became lower. I think keeping the original image direction may have helped the model recognize some features more consistently. For example, it may help the model learn left-side driving patterns in Tokyo and Korean signs and object arrangements in Seoul. However, Horizontal Flip may help the model learn more variations in street layouts and city scenes in Busan, Osaka, and Taipei. Overall, removing Horizontal Flip did not improve the model's performance.
+- **Next plan:** I will try another experiment to improve the overall validation score while keeping the performance of all five cities balanced.
