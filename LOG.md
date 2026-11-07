@@ -72,11 +72,18 @@ Many images contain shopping streets, local shops, restaurants, and street signs
 - Why: Seoul and Tokyo had many more training images than the other cities, so the model had more chances to learn their features. I wanted to give Busan, Osaka, and Taipei more chances by balancing the number of times that images from each city were sampled.
 - Validation: 0.5114 (before: 0.4896)
 - What it means: The results improved for Busan, Osaka, and Taipei, but decreased for Seoul and Tokyo. I think this is because the model could focus more on the features of cities that had fewer training images before. At the same time, it saw fewer images from Seoul and Tokyo compared to the original training method. However, the overall score increased, so balanced sampling seems to have helped the model perform better across all five cities.
-- Next plan: I will try another experiment to improve the overall validation score while keeping the performance of all five cities balanced.
+- Next plan: I will try another experiment to improve the overall validation score by removing horizontal flipped images.
 
 2. Second change: Removing Horizontal Flip
 - Changed: Removed `RandomHorizontalFlip()` from the training recipe. The model now trains only with images in their original direction.
 - Why: I wanted to test if keeping images in their original direction could help the model learn city features more consistently. Some city features, such as traffic direction, signs, and the arrangement of objects, may be important for recognizing each city.
 - Validation: 0.5007
 - What it means: The overall score decreased from 0.5114 to 0.5007. Seoul and Tokyo increased slightly, while Busan, Osaka, and Taipei became lower. I think keeping the original image direction may have helped the model recognize some features more consistently. For example, it may help the model learn left-side driving patterns in Tokyo and Korean signs and object arrangements in Seoul. However, Horizontal Flip may help the model learn more variations in street layouts and city scenes in Busan, Osaka, and Taipei. Overall, removing Horizontal Flip did not improve the model's performance.
-- **Next plan:** I will try another experiment to improve the overall validation score while keeping the performance of all five cities balanced.
+- Next plan: I will try another experiment to improve the overall validation score by removing specific images of each city 
+
+3. Third change: Removing Non-Urban Photos
+- Changed: Removed 68 photos that did not clearly show urban environments from the training selection. These included food, people, flowers, objects, indoor scenes, and other unrelated images. 
+- Why: I wanted the model to focus more on recognizing external urban environments rather than relying on features related to culture, food, or everyday objects. I also wanted to make the training data more consistent across the five cities.
+- Validation: 0.4963
+- What it means: The overall score decreased from 0.5007 to 0.4963. Seoul, Busan, and Osaka increased slightly, while Tokyo and Taipei became lower. I think the removed photos may have affected how the model learned visual features for each city differently. Regarding to Seoul, Busan, and Osaka, this may have shown that the model focus more on external urban features. Osaka showed the largest improvement. However, for Tokyo and Taipei, some removed photos may have contained useful visual information, such as objects, indoor environments, or food-related features, which helped the model distinguish these cities. This suggests that even photos that do not directly show streets or buildings can provide useful clues for city classification. Overall, making the training data more consistent did not improve the model's performance.
+- Next plan: I will review the results of the three experiments and consider which changes were more effective in improving the overall validation score while keeping the performance of all five cities balanced.
