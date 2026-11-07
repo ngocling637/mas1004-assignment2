@@ -87,3 +87,10 @@ Many images contain shopping streets, local shops, restaurants, and street signs
 - Validation: 0.4963
 - What it means: The overall score decreased from 0.5007 to 0.4963. Seoul, Busan, and Osaka increased slightly, while Tokyo and Taipei became lower. I think the removed photos may have affected how the model learned visual features for each city differently. Regarding to Seoul, Busan, and Osaka, this may have shown that the model focus more on external urban features. Osaka showed the largest improvement. However, for Tokyo and Taipei, some removed photos may have contained useful visual information, such as objects, indoor environments, or food-related features, which helped the model distinguish these cities. This suggests that even photos that do not directly show streets or buildings can provide useful clues for city classification. Overall, making the training data more consistent did not improve the model's performance.
 - Next plan: I will review the results of the three experiments and consider which changes were more effective in improving the overall validation score while keeping the performance of all five cities balanced.
+
+## 2026-11-07 b1 (Track B)
+- Changed: trained `train_b.py` without modifying its default configuration, and used the resulting model as the Track B submission
+- Why: to create the first Track B model using the default configuration, as a baseline for future experiments
+- Validation: 0.491; before: none, this is the first Track B model
+- What it means: the model achieved 49.1% validation accuracy and passed the submission format and limits check. Busan and Osaka had lower accuracy than Seoul and Tokyo.
+- Next step: try improvements to Track B, check each one with `check_submission.py`, and keep the ones that help
