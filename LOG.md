@@ -96,8 +96,17 @@ Many images contain shopping streets, local shops, restaurants, and street signs
 - Next step: try improvements to Track B, check each one with `check_submission.py`, and keep the ones that help
 
 ## 2026-11-08 b2 (Track B)
+1. First change: Balancing the images that were sampled of each city
 - Changed: Added --balance to the Track B training command. The model now samples images from each city equally during training.
 - Why: Balanced sampling was the most effective change in Track A, so I wanted to test whether it could also improve the Track B model.
 - Validation: 0.4933; before: 0.4910 (b1)
 - What it means: Busan and Osaka originally had fewer training photos, while Seoul and Tokyo had more. After applying balanced sampling, the model may have learned from the five cities more evenly. The accuracy gap between cities also became smaller in b2. However, the overall validation score improved only slightly.
 - Next step: Try another improvement to the Track B model, changing only one factor at a time.
+
+2. Second change: Increasing the number of epoch from 4 to 6
+## 2026-11-09 b3 (Track B)
+- Changed: Increased the training duration from 4 to 6 epochs while keeping the b2 configuration unchanged.
+- Why: I wanted to test whether training for more epochs would improve the model's performance, since the training loss was still decreasing after 4 epochs.
+- Validation: 0.5080; before: 0.4933 (b2)
+- What it means: Overall validation accuracy improved by 1.47 percentage points. Seoul showed the largest improvement, while Busan, Tokyo, and Taipei also improved slightly. However, Osaka's accuracy decreased by 2.86 percentage points. One possible explanation is that the model may have difficulty distinguishing Osaka from Tokyo, as previous Track A experiments showed frequent misclassification between these two cities. Another possibility is overfitting. Although the training loss decreased with more epochs, the model's accuracy on Osaka validation images became worse. This may indicate that the model learned the training images better without improving its ability to generalize to unseen Osaka images. 
+- Next step: Continue experimenting with Track B while monitoring whether additional training improves validation performance consistently.
