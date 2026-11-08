@@ -94,3 +94,10 @@ Many images contain shopping streets, local shops, restaurants, and street signs
 - Validation: 0.491; before: none, this is the first Track B model
 - What it means: the model achieved 49.1% validation accuracy and passed the submission format and limits check. Busan and Osaka had lower accuracy than Seoul and Tokyo.
 - Next step: try improvements to Track B, check each one with `check_submission.py`, and keep the ones that help
+
+## 2026-11-08 b2 (Track B)
+- Changed: Added --balance to the Track B training command. The model now samples images from each city equally during training.
+- Why: Balanced sampling was the most effective change in Track A, so I wanted to test whether it could also improve the Track B model.
+- Validation: 0.4933; before: 0.4910 (b1)
+- What it means: Busan and Osaka originally had fewer training photos, while Seoul and Tokyo had more. After applying balanced sampling, the model may have learned from the five cities more evenly. The accuracy gap between cities also became smaller in b2. However, the overall validation score improved only slightly.
+- Next step: Try another improvement to the Track B model, changing only one factor at a time.
